@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require("./user");
 
 const expedienteSchema = new mongoose.Schema({
     nombreArchivo: {

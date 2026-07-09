@@ -1,4 +1,5 @@
 const Expediente = require("../model/expediente");
+const User = require("../models/User");
 
 // Crear un expediente
 const crearExpediente = async (req, res) => {
