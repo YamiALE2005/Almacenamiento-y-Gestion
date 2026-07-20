@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const verificarToken = require("../middlewares/authMiddleware");
+
 const {
     crearExpediente,
     obtenerExpedientes,
@@ -9,14 +11,14 @@ const {
     eliminarExpediente
 } = require("../controllers/expedienteController");
 
-router.post("/expedientes", crearExpediente);
+router.post("/expedientes", verificarToken, crearExpediente);
 
-router.get("/expedientes", obtenerExpedientes);
+router.get("/expedientes", verificarToken, obtenerExpedientes);
 
-router.get("/expedientes/:id", obtenerExpedientePorId);
+router.get("/expedientes/:id", verificarToken, obtenerExpedientePorId);
 
-router.put("/expedientes/:id", actualizarExpediente);
+router.put("/expedientes/:id", verificarToken, actualizarExpediente);
 
-router.delete("/expedientes/:id", eliminarExpediente);
+router.delete("/expedientes/:id", verificarToken, eliminarExpediente);
 
 module.exports = router;
