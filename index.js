@@ -1,8 +1,10 @@
 const express = require("express");
+const helmet = require("helmet");
 const conectarDB = require("./src/config/database");
 const expedienteRoutes = require("./src/routes/expedienteRoutes");
 
 const app = express();
+app.use(helmet());
 
 app.use(express.json());
 
@@ -35,4 +37,4 @@ if (require.main === module) {
         console.log(`   - GET  http://localhost:${PORT}/api/expedientes`);
         console.log(`   - POST http://localhost:${PORT}/api/expedientes`);
     });
-}
+}

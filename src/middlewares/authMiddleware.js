@@ -1,9 +1,10 @@
 const verificarToken = (req, res, next) => {
+
     // Obtener el token de los headers comunes, customizados o de Authorization
-    const tokenHeader = req.header("app_token") || 
-                        req.header("app-token") || 
-                        req.header("APP_TOKEN") || 
-                        req.header("token") || 
+    const tokenHeader = req.header("app_token") ||
+                        req.header("app-token") ||
+                        req.header("APP_TOKEN") ||
+                        req.header("token") ||
                         req.header("Authorization");
 
     if (!tokenHeader) {
@@ -13,7 +14,9 @@ const verificarToken = (req, res, next) => {
     }
 
     // Si viene de Authorization con el prefijo "Bearer ", se lo quitamos
-    const token = tokenHeader.startsWith("Bearer ") ? tokenHeader.replace("Bearer ", "") : tokenHeader;
+    const token = tokenHeader.startsWith("Bearer ")
+        ? tokenHeader.replace("Bearer ", "")
+        : tokenHeader;
 
     // Validación del token estático (genérico) de la aplicación
     if (token !== process.env.APP_TOKEN) {
@@ -23,6 +26,7 @@ const verificarToken = (req, res, next) => {
     }
 
     next();
+
 };
 
 module.exports = verificarToken;
